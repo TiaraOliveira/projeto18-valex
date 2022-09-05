@@ -2,6 +2,10 @@ import express, { json } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import router from "./Routers/index";
+import errorHandler from "./Middlewares/errorHandler";
+import "express-async-errors"
+
+
 dotenv.config()
 
 const server = express();
@@ -9,6 +13,7 @@ const server = express();
 server.use(cors(), json());
 
 server.use(router);
+server.use(errorHandler);
 
 const PORT = Number(process.env.PORT) || 5000;
 
